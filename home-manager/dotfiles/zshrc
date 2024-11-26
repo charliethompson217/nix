@@ -1,0 +1,35 @@
+export ZSH="$HOME/.nix-profile/share/oh-my-zsh"
+
+source $ZSH/oh-my-zsh.sh
+
+# Enable Powerlevel10k instant prompt
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+# Source Powerlevel10k
+source "$HOME/.nix-profile/share/zsh-powerlevel10k/powerlevel10k.zsh-theme"
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# Add Powerlevel10k binary to PATH
+export PATH=$PATH:$HOME/.nix-profile/bin
+
+# Manually source zsh-autosuggestions
+ZSH_AUTOSUGGESTIONS_PATH="$HOME/.nix-profile/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
+if [ -f "$ZSH_AUTOSUGGESTIONS_PATH" ]; then
+  source "$ZSH_AUTOSUGGESTIONS_PATH"
+fi
+
+# Customize autosuggestions
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=244"
+
+# Enable syntax highlighting
+source "$HOME/.nix-profile/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+
+alias zshconfig="vim ~/.zshrc"
+alias ohmyzsh="vim ~/.nix-profile/share/oh-my-zsh"
+alias cls="clear"
+
+neofetch

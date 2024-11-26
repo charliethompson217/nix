@@ -1,0 +1,11 @@
+" Enable syntax highlighting
+syntax on
+
+" Enable file type detection
+filetype on
+filetype plugin on
+filetype indent on
+
+" Enable relative line numbers
+set number
+
