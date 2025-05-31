@@ -11,17 +11,19 @@
       pkgs.zsh-syntax-highlighting
       pkgs.powerline-fonts
       pkgs.zsh-powerlevel10k
-      pkgs.nerdfonts
-      pkgs.vim
       pkgs.neofetch
     ];
 
     file = {
       ".gitconfig".source = ./dotfiles/gitconfig;
       ".zshrc".source = ./dotfiles/zshrc;
-      ".vimrc".source = ./dotfiles/vimrc;
       ".config/neofetch/config.conf".source = ./dotfiles/neofetch.conf;
       ".p10k.zsh".source = ./dotfiles/p10k.zsh;
+      ".prettierrc".source = ./dotfiles/prettierrc;
+      ".local/bin/nix-sync" = {
+        source = ./scripts/UpdateNixConfig.sh;
+        executable = true;
+      };
     };
 
     sessionVariables = {

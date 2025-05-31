@@ -26,24 +26,24 @@
 
   outputs = { self, nixpkgs, darwin, home-manager, nix-homebrew, homebrew-core, homebrew-cask }: {
     darwinConfigurations."charless-MacBook-Air" = darwin.lib.darwinSystem {
-      system = "aarch64-darwin";
-      modules = [
-        home-manager.darwinModules.home-manager
-        nix-homebrew.darwinModules.nix-homebrew
-        {
-          nixpkgs.config.allowUnfree = true;
+    system = "aarch64-darwin";
+    modules = [
+      home-manager.darwinModules.home-manager
+      nix-homebrew.darwinModules.nix-homebrew
+      {
+        nixpkgs.config.allowUnfree = true;
 
-          users.users.charlesthompson = {
-            home = "/Users/charlesthompson";
-          };
+        users.users.charlesthompson = {
+          home = "/Users/charlesthompson";
+        };
 
-          system.stateVersion = 5;
+        system.stateVersion = 5;
 
-          home-manager = {
-            useGlobalPkgs = true;
-            useUserPackages = true;
-            backupFileExtension = "backup";
-            users.charlesthompson = { pkgs, ... }: {
+        home-manager = {
+          useGlobalPkgs = true;
+          useUserPackages = true;
+          backupFileExtension = "backup";
+          users.charlesthompson = { pkgs, ... }: {
               home = {
                 stateVersion = "23.11";
                 username = "charlesthompson";
@@ -57,6 +57,9 @@
                   enable = true;
                   userName = "Charles Thompson";
                   userEmail = "80548854+charliethompson217@users.noreply.github.com";
+                  extraConfig = {
+                    credential.helper = "osxkeychain";
+                  };
                 };
               };
             };
@@ -84,74 +87,13 @@
           };
 
           environment.systemPackages = with nixpkgs.legacyPackages.aarch64-darwin; [
-            git python3 nodejs tree tmux htop
+            git python3 nodejs tree htop rustup neovim
           ];
 
           nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-          services.nix-daemon.enable = true;
+          security.pam.services.sudo_local.touchIdAuth = true;
 
-          security.pam.enableSudoTouchIdAuth = true;
-
-          system.defaults = {
-            dock = {
-              autohide = true;
-              orientation = "bottom";
-              showhidden = true;
-              launchanim = false;
-              mru-spaces = false;
-              show-recents = false;
-              tilesize = 40;
-              persistent-apps = [
-                "/System/Applications/System Settings.app"
-                "/System/Applications/Launchpad.app"
-                "/System/Applications/App Store.app"
-                "/System/Volumes/Preboot/Cryptexes/App/System/Applications/Safari.app"
-                "/System/Applications/Utilities/Terminal.app"
-                "/System/Applications/Messages.app"
-                "/System/Applications/FaceTime.app"
-                "/System/Applications/Music.app"
-                "/System/Applications/Notes.app"
-              ];
-              persistent-others = [
-                
-              ];
-            };
-            NSGlobalDomain = {
-              AppleShowAllExtensions = true;
-              InitialKeyRepeat = 15;
-              KeyRepeat = 2;
-              "com.apple.swipescrolldirection" = false;
-              AppleEnableSwipeNavigateWithScrolls = false;
-              AppleInterfaceStyle = "Dark";
-              NSAutomaticInlinePredictionEnabled = false;
-              "com.apple.mouse.tapBehavior" = 1;
-            };
-            alf.globalstate = 1;
-            controlcenter.BatteryShowPercentage = true;
-            finder.FXPreferredViewStyle = "Nlsv";
-            finder.ShowPathbar = true;
-            finder._FXShowPosixPathInTitle = true;
-            loginwindow.GuestEnabled = false;
-            loginwindow.LoginwindowText = "(937) 301-0499";
-            menuExtraClock = {
-              FlashDateSeparators = true;
-              ShowAMPM = true;
-              ShowDate = 1;
-              ShowDayOfMonth = true;
-              ShowDayOfWeek = true;
-              ShowSeconds = true;
-            };
-            screencapture.location = "/Users/charlesthompson/screenshots";
-            screensaver.askForPassword = true;
-            screensaver.askForPasswordDelay = 0;
-            trackpad.Clicking = true;
-            CustomUserPreferences = {
-              "com.apple.Safari" = {
-                "com.apple.Safari.ContentPageGroupIdentifier.WebKit2DeveloperExtrasEnabled" = true;
-              };
-            };
-          };
         }
       ];
     };
