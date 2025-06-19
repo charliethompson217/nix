@@ -42,5 +42,25 @@ alias homemanagerconfig='nvim ~/.config/home-manager/home.nix'
 alias vim='nvim'
 alias cat='bat --paging=never'
 alias git-tree='git ls-tree -r --name-only HEAD | tree --fromfile'
+alias ls='ls -1G'
+alias grep='grep -i'
+alias lsxl="ls | xargs ls -aG"
+alias path="echo $PATH | split ':'"
 
 export BAT_THEME="Dracula"
+
+split() {
+    if [ $# -lt 1 ]; then
+        awk -F" " '{for(i=1;i<=NF;i++) print $i}'
+        return 1
+    fi
+    awk -F"$1" '{for(i=1;i<=NF;i++) print $i}'
+}
+
+head() {
+  if [[ "$*" =~ "-c" ]]; then
+    command head "$@"
+  else
+    command head -n "$@"
+  fi
+}

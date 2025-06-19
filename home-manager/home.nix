@@ -21,7 +21,15 @@
       ".p10k.zsh".source = ./dotfiles/p10k.zsh;
       ".prettierrc".source = ./dotfiles/prettierrc;
       ".local/bin/nix-sync" = {
-        source = ./scripts/UpdateNixConfig.sh;
+        source = ./scripts/nix-sync.sh;
+        executable = true;
+      };
+     ".local/bin/nix-install" = {
+        source = ./scripts/nix-install.sh;
+        executable = true;
+      };
+      ".local/bin/nix-uninstall" = {
+        source = ./scripts/nix-uninstall.sh;
         executable = true;
       };
     };
