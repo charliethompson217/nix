@@ -64,3 +64,19 @@ head() {
     command head -n "$@"
   fi
 }
+
+new() {
+    if [ -z "$1" ]; then
+        echo "Usage: new <filename>"
+        return 1
+    fi
+    
+    template="$HOME/.config/defaults/$1"
+    if [ -f "$template" ]; then
+        cp "$template" ./
+        echo "Created $1 from template"
+    else
+        echo "Error: No template found for $1"
+        return 1
+    fi
+}
