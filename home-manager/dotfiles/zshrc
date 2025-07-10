@@ -16,7 +16,7 @@ source "$HOME/.nix-profile/share/zsh-powerlevel10k/powerlevel10k.zsh-theme"
 
 export PATH=$HOME/.nix-profile/bin:$PATH
 export PATH="$HOME/.cargo/bin:$PATH"
-
+export PATH="/run/current-system/sw/bin:$PATH"
 # Manually source zsh-autosuggestions
 ZSH_AUTOSUGGESTIONS_PATH="$HOME/.nix-profile/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
 if [ -f "$ZSH_AUTOSUGGESTIONS_PATH" ]; then
@@ -40,12 +40,15 @@ alias neofetchconfig='nvim ~/.config/home-manager/dotfiles/neofetch.conf'
 alias nixdarwinconfig='nvim ~/.config/nix-darwin/flake.nix'
 alias homemanagerconfig='nvim ~/.config/home-manager/home.nix'
 alias vim='nvim'
-alias cat='bat --paging=never'
+alias cat='bat --paging=never --style=plain'
 alias git-tree='git ls-tree -r --name-only HEAD | tree --fromfile'
 alias ls='ls -1G'
 alias grep='grep -i'
 alias lsxl="ls | xargs ls -aG"
 alias path="echo $PATH | split ':'"
+alias srsync="rsync -av --info=progress2 -e ssh"
+alias rsync="rsync -av --info=progress2"
+alias alpharand="LC_ALL=C tr -dc 'A-Za-z0-9' < /dev/random"
 
 export BAT_THEME="Dracula"
 

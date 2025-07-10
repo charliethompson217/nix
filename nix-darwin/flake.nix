@@ -87,7 +87,7 @@
           };
 
           environment.systemPackages = with nixpkgs.legacyPackages.aarch64-darwin; [
-            git python3 nodejs tree htop rustup neovim ripgrep fzf
+            git python3 nodejs tree htop rustup neovim ripgrep fzf rsync
           ];
 
           nix.settings.experimental-features = [ "nix-command" "flakes" ];
