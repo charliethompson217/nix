@@ -2,5 +2,10 @@
 [user]
 	name = Charles Thompson
 	email = 80548854+charliethompson217@users.noreply.github.com
+  signingkey = 1793FA1A82DD65D8
 [core]
 	excludesFile = /Users/charlesthompson/.gitignore
+[commit]
+    gpgsign = true
+[gpg]
+    program = gpg
